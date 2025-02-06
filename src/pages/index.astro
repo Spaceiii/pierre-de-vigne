@@ -1,11 +1,33 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import CardLayout from "../layouts/utils/CardLayout.astro";
+import Card from "../components/utils/Card.astro";
+import {log} from "astro/dist/core/logger/core";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// const placeholderUrl = "https://placehold.co/300x150";
+const placeholderUrl = "https://picsum.photos/v2/list?limit=5";
+fetch(placeholderUrl).then(console.log)
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Accueil">
+	<main>
+		<h1>Bienvenue au Domaine Pierre de Vigne</h1>
+
+		<CardLayout>
+			<Card title="Philosophie" image={{ url: placeholderUrl, alt: "placeholder" }}>
+				<p>Notre philosophie est de produire des vins de qualité, en respectant la nature et les traditions.</p>
+			</Card>
+			<Card title="Vigne" image={{ url: placeholderUrl, alt: "placeholder" }}>
+				<p>Nos vignes sont cultivées avec soin, dans le respect de l'environnement.</p>
+			</Card>
+			<Card title="Cave" image={{ url: placeholderUrl, alt: "placeholder" }}>
+				<p>Notre cave est équipée des dernières technologies pour garantir la qualité de nos vins.</p>
+			</Card>
+			<Card title="Caveau" image={{ url: placeholderUrl, alt: "placeholder" }}>
+				<p>Notre caveau de dégustation vous accueille pour découvrir nos vins dans une ambiance conviviale.</p>
+			</Card>
+		</CardLayout>
+
+		<br>
+	</main>
 </Layout>

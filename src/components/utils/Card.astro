@@ -1,0 +1,35 @@
+---
+interface Props {
+    title: string;
+    image: {
+        url: string;
+        alt: string;
+    };
+}
+
+const { title, image } = Astro.props;
+---
+<div class="container">
+    {image && <img src={image.url} alt={image.alt} />}
+    <div class="content">
+        <h2>{title}</h2>
+        <slot />
+    </div>
+</div>
+
+<style>
+.container {
+    --border-rad: 1rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-rad) var(--border-rad) 0 0;
+    overflow: hidden;
+}
+
+.content {
+    padding: 1rem;
+}
+
+img {
+    width: 100%;
+}
+</style>

@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets'
+
+interface NavItem {
+    title: string;
+    link: string;
+}
+
+const navItems: NavItem[] = Astro.props.navItems
+
+const isCurrentPage = (link: string): boolean => {
+    return link === Astro.url.pathname
+}
+---
+<nav>
+    <Image src="https://placehold.co/150x80" alt="Logo pierre de vigne" inferSize={true} />
+
+    <div>
+    {navItems.map((item : NavItem) => (
+        <a href={item.link} class={isCurrentPage(item.link) ? 'active' : ''}>{ item.title }</a>
+    ))}
+    </div>
+</nav>
+
+<style is:global>
+    :root {
+        --gray: #485457;
+    }
+</style>
+
+<style>
+    nav {
+        padding: 0 5rem;
+        background: var(--gray);
+        display: flex;
+        gap: 1rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+        padding: 1rem;
+    }
+
+    a.active {
+        color: #fff;
+    }
+</style>
